@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+}
+
+/* Container */
+.chat-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Chat box */
+.chat-box {
+    background: #1e293b;
+    height: 420px;
+    overflow-y: auto;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Message wrapper */
+.msg-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 75%;
+    margin: 8px 0;
+}
+
+/* Alignments */
+.msg-wrapper.user {
+    align-self: flex-end;
+}
+
+.msg-wrapper.bot {
+    align-self: flex-start;
+}
+
+/* Message bubble */
+.message {
+    padding: 12px 14px;
+    border-radius: 12px;
+    line-height: 1.5;
+    font-size: 14px;
+    white-space: pre-wrap;
+    max-width: fit-content;
+}
+
+/* User message */
+.msg-wrapper.user .message {
+    background: #22c55e;
+    color: white;
+}
+
+/* Bot message */
+.msg-wrapper.bot .message {
+    background: #334155;
+}
+
+/* Timestamp */
+.time {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-top: 3px;
+}
+
+/* Buttons */
+.input-area {
+    text-align: center;
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px 18px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+}
+
+/* Typing animation */
+.dots::after {
+    content: '';
+    animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+    0% { content: ''; }
+    33% { content: '.'; }
+    66% { content: '..'; }
+    100% { content: '...'; }
+}
+
+/* Popup container */
+.popup {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1e293b;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+/* Show popup */
+.popup.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hidden */
+.hidden {
+    display: none;
+}
