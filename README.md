@@ -16,7 +16,6 @@ EchoMind is a Flask-based emotional chatbot for daily conversation and supportiv
 - Emotion history tracking for the last 20 turns
 - Chart.js emotion trend graph
 - Spike/drop alert when mood changes quickly
-- Optional Mock Interview Mode with confidence, stress, clarity, and tone feedback
 - Chat history sidebar stored in browser localStorage
 - Text-to-speech output
 - Emotion-colored UI states
@@ -211,23 +210,7 @@ If the value changes by 2 or more between two turns, EchoMind shows:
 Your mood changed quickly just now
 ```
 
-## Mock Interview Mode
 
-Mock Interview Mode is optional and does not replace the normal chatbot.
-
-When enabled for voice input, EchoMind analyzes:
-
-- confidence level
-- stress level
-- clarity
-- tone label such as confident, nervous, unsure, or monotone
-
-It then shows short interview feedback such as:
-
-```text
-You sounded slightly nervous.
-Try slowing down, pausing between points, and speaking clearly.
-```
 
 ## Response Rules
 
@@ -254,20 +237,5 @@ Rules:
 - Base voice model outputs include happy, sad, angry, calm, neutral, and related classes depending on training data
 - Voice outputs are normalized into EchoMind's expanded emotion classes
 
-## Limitations
 
-- Emotion detection is approximate and depends on audio quality and transcript accuracy
-- Browser speech recognition works best in Chrome or Edge
-- Hindi/Gujarati voice recognition depends on selecting the correct voice language
-- Translation requires network access when using `deep-translator`
-- Gemini-based replies require an API key and internet access
-- The system does not diagnose mental health conditions
 
-## Ethical Note
-
-EchoMind is for supportive conversation and educational demonstration only. It does not provide medical advice, diagnosis, crisis support, or professional interview coaching.
-
-## Author
-
-Roshni Raichandani  
-B.Tech IT - Semester 6
