@@ -1,5 +1,3 @@
-# emotion_detection.py
-
 import librosa
 import numpy as np
 import joblib
@@ -17,3 +15,19 @@ def predict_emotion(audio_file):
     features = extract_features(audio_file)
     features = features.reshape(1, -1)
     return model.predict(features)[0]
+
+
+def predict_emotion_details(audio_file):
+    features = extract_features(audio_file).reshape(1, -1)
+    emotion = model.predict(features)[0]
+
+    if not hasattr(model, "predict_proba"):
+        return emotion, None, {}
+
+    probabilities = model.predict_proba(features)[0]
+    scores = {
+        label: round(float(score), 3)
+        for label, score in zip(model.classes_, probabilities)
+    }
+    confidence = scores.get(emotion)
+    return emotion, confidence, scores

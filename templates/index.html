@@ -1,22 +1,118 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>EchoMind</title>
     <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <div class="chat-container">
-      <h1>🧠 EchoMind AI</h1>
-      <p id="liveText"></p>
-      <div id="popup" class="popup hidden"></div>
+    <main class="app-shell">
+      <aside class="history-sidebar" aria-label="Chat history">
+        <div class="history-header">
+          <h2>EchoMind</h2>
+          <button id="newChatBtn" class="new-chat-button" type="button">New chat</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </aside>
 
-      <div id="chatBox" class="chat-box"></div>
+      <section class="assistant-panel" aria-label="EchoMind chat">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Emotion-aware assistant</p>
+            <h1>EchoMind</h1>
+          </div>
+          <div class="status-pill" id="statusPill">Ready</div>
+        </header>
 
-      <div class="input-area">
-        <button onclick="startSpeechRecognition()">🎤 Start</button>
-        <button onclick="stopSpeechRecognition()">⏹ Stop</button>
-      </div>
-    </div>
+        <div class="insight-strip">
+          <div>
+            <span class="metric-label">Mood</span>
+            <strong id="moodMetric">Neutral</strong>
+          </div>
+          <div>
+            <span class="metric-label">Sentiment</span>
+            <strong id="sentimentMetric">Waiting</strong>
+          </div>
+          <div>
+            <span class="metric-label">Intent</span>
+            <strong id="intentMetric">General</strong>
+          </div>
+          <div>
+            <span class="metric-label">Confidence</span>
+            <strong id="confidenceMetric">--</strong>
+          </div>
+          <div>
+            <span class="metric-label">Language</span>
+            <strong id="languageMetric">English</strong>
+          </div>
+        </div>
+
+        <section class="trend-panel" aria-label="Emotion trend">
+          <div class="trend-header">
+            <div>
+              <span class="metric-label">Emotion Trend</span>
+              <strong>Last 20 turns</strong>
+            </div>
+            <p id="spikeAlert" class="spike-alert" aria-live="polite"></p>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="emotionChart"></canvas>
+          </div>
+        </section>
+
+        <section id="interviewFeedback" class="interview-feedback hidden" aria-live="polite"></section>
+
+        <div id="chatBox" class="chat-box" aria-live="polite">
+          <div class="msg-wrapper bot">
+            <div class="message">
+              Hey, I am here. Send text or use voice and I will read the mood.
+            </div>
+            <span class="time">Now</span>
+          </div>
+        </div>
+
+        <p id="liveText" class="live-text"></p>
+        <div id="popup" class="popup hidden"></div>
+
+        <form id="textForm" class="composer">
+          <input
+            id="textInput"
+            type="text"
+            autocomplete="off"
+            placeholder="Type a message..."
+            aria-label="Message"
+          />
+          <button class="send-button" type="submit">Send</button>
+        </form>
+
+        <div class="controls" aria-label="Voice controls">
+          <label class="voice-language">
+            <span>Voice language</span>
+            <select id="voiceLanguageSelect" aria-label="Voice language">
+              <option value="en" data-speech-lang="en-US">English</option>
+              <option value="hi" data-speech-lang="hi-IN">Hindi</option>
+              <option value="gu" data-speech-lang="gu-IN">Gujarati</option>
+            </select>
+          </label>
+          <button id="startBtn" class="control-button" type="button" onclick="startSpeechRecognition()">
+            Start voice
+          </button>
+          <button id="stopBtn" class="control-button secondary" type="button" onclick="stopSpeechRecognition(true)">
+            Stop
+          </button>
+          <label class="toggle">
+            <input id="autoListenToggle" type="checkbox" checked />
+            <span>Auto listen after reply</span>
+          </label>
+          <label class="toggle interview-toggle">
+            <input id="interviewModeToggle" type="checkbox" />
+            <span>Interview Mode</span>
+          </label>
+        </div>
+      </section>
+    </main>
 
     <script src="/static/script.js"></script>
   </body>
