@@ -51,7 +51,6 @@ User text or voice
   -> Emotion history + spike detection
   -> Chat UI, graph, and optional speech output
 ```
-
 Final emotion priority:
 
 1. Clear text emotion signal
@@ -62,7 +61,6 @@ Final emotion priority:
 6. Neutral fallback
 
 ## Tech Stack
-
 - Python
 - Flask
 - JavaScript, HTML, CSS
